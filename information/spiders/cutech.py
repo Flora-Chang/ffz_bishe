@@ -3,7 +3,7 @@ import re
 import scrapy
 from scrapy.http import Request
 from information.items import InformationItem
-
+import time
 
 class CutechSpider(scrapy.Spider):
     name = 'cutech'

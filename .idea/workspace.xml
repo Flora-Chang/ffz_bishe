@@ -2,26 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92a7ff13-b54f-476b-9f7a-f3ec85077dc5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/information.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cutech.bk.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cutech.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/others.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/pkuresearch.bk.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/information/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/information/items.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/information/middlewares.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/information/pipelines.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/information/settings.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/information/spiders/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/information/spiders/cistc.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/information/spiders/cutech.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/information/spiders/pkuResearch.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scrapy.cfg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/cutech.json" afterPath="$PROJECT_DIR$/data/cutech.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/information/spiders/cistc.py" afterPath="$PROJECT_DIR$/information/spiders/cistc.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/information/spiders/cutech.py" afterPath="$PROJECT_DIR$/information/spiders/cutech.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,114 +18,134 @@
     <favorites_list name="information" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pkuResearch.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/information/spiders/pkuResearch.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="736">
-              <caret line="35" column="12" lean-forward="false" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cutech.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/information/spiders/cutech.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="4" column="45" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="45" />
-              <folding>
-                <element signature="e#24#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cistc.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/information/spiders/cistc.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding>
-                <element signature="e#24#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cutech.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/cutech.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7084">
-              <caret line="1" column="736" lean-forward="false" selection-start-line="1" selection-start-column="736" selection-end-line="1" selection-end-column="736" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pkuresearch.bk.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/pkuresearch.bk.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="others.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/others.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pipelines.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/information/pipelines.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="22" column="60" lean-forward="false" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="60" />
-              <folding>
-                <element signature="e#193#202#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/information/spiders/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cutech.bk.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/cutech.bk.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-14849">
-              <caret line="0" column="779" lean-forward="false" selection-start-line="0" selection-start-column="779" selection-end-line="0" selection-end-column="779" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/information/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1495">
-              <caret line="65" column="9" lean-forward="false" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.44632438">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="pkuResearch.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/information/spiders/pkuResearch.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="736">
+                  <caret line="35" column="12" lean-forward="false" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="cutech.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/information/spiders/cutech.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-246">
+                  <caret line="30" column="49" lean-forward="false" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
+                  <folding>
+                    <element signature="e#24#33#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="cistc.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/information/spiders/cistc.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="253">
+                  <caret line="12" column="44" lean-forward="false" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+                  <folding>
+                    <element signature="e#24#33#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="cutech.json" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/data/cutech.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-7084">
+                  <caret line="1" column="736" lean-forward="false" selection-start-line="1" selection-start-column="736" selection-end-line="1" selection-end-column="736" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="items.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/information/items.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="368">
+                  <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/information/__init__.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/information/settings.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-1">
+                  <caret line="65" column="9" lean-forward="false" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="others.json" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/data/others.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="pipelines.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/information/pipelines.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="460">
+                  <caret line="20" column="37" lean-forward="false" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="37" />
+                  <folding>
+                    <element signature="e#193#202#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/information/spiders/__init__.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="cistc.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/information/spiders/cistc.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="621">
+                  <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#24#33#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -170,8 +173,8 @@
         <option value="$PROJECT_DIR$/data/others.json" />
         <option value="$PROJECT_DIR$/information/spiders/pkuResearch.py" />
         <option value="$PROJECT_DIR$/information/pipelines.py" />
-        <option value="$PROJECT_DIR$/information/spiders/cutech.py" />
         <option value="$PROJECT_DIR$/data/cutech.json" />
+        <option value="$PROJECT_DIR$/information/spiders/cutech.py" />
         <option value="$PROJECT_DIR$/information/spiders/cistc.py" />
       </list>
     </option>
@@ -450,8 +453,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-281" y="-1080" width="1920" height="1080" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.185836" sideWeight="0.4888268" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1086262" sideWeight="0.4888268" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -459,7 +463,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970297" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45742574" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23861386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5111732" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -567,14 +571,6 @@
     <entry file="file://$PROJECT_DIR$/data/2.cutech.json" />
     <entry file="file://$PROJECT_DIR$/information/spiders/baidu.py" />
     <entry file="file://$PROJECT_DIR$/data/2.pkuresearch.json" />
-    <entry file="file://$PROJECT_DIR$/information/items.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/information/middlewares.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1554">
@@ -587,14 +583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/information/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1495">
-          <caret line="65" column="9" lean-forward="false" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -631,13 +619,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/information/pipelines.py">
+    <entry file="file://$PROJECT_DIR$/information/spiders/pkuResearch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="22" column="60" lean-forward="false" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="60" />
-          <folding>
-            <element signature="e#193#202#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="736">
+          <caret line="35" column="12" lean-forward="false" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -649,18 +635,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/information/spiders/pkuResearch.py">
+    <entry file="file://$PROJECT_DIR$/information/items.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="35" column="12" lean-forward="false" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
+        <state relative-caret-position="368">
+          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/information/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/information/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1">
+          <caret line="65" column="9" lean-forward="false" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/information/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="20" column="37" lean-forward="false" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="37" />
+          <folding>
+            <element signature="e#193#202#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/information/spiders/cutech.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="45" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="45" />
+        <state relative-caret-position="-246">
+          <caret line="30" column="49" lean-forward="false" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
           <folding>
             <element signature="e#24#33#0" expanded="true" />
           </folding>
@@ -669,8 +681,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/information/spiders/cistc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state relative-caret-position="621">
+          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="e#24#33#0" expanded="true" />
           </folding>
