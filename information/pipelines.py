@@ -15,6 +15,10 @@ class InformationPipeline(object):
             filename = 'pkuresearch.json'
         elif spider.name == 'cutech':
             filename = 'cutech.json'
+        elif spider.name == 'cistc':
+            filename = 'cistc.json'
+        elif spider.name == 'nsfc':
+            filename = 'nsfc.json'
         else:
             filename = 'others.json'
 
