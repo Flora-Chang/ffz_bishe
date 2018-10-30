@@ -5,6 +5,7 @@ from scrapy.http import Request
 from information.items import InformationItem
 import time
 
+'''教育部科技发展中心'''
 class CutechSpider(scrapy.Spider):
     name = 'cutech'
     allowed_domains = ['cutech.edu.cn']

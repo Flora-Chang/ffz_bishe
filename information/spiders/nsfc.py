@@ -4,6 +4,7 @@ from scrapy.http import Request
 from information.items import InformationItem
 import re
 
+'''国家自然科学基金委员会'''
 class NsfcSpider(scrapy.Spider):
     name = 'nsfc'
     allowed_domains = ['nsfc.gov.cn']

@@ -4,7 +4,7 @@ import scrapy
 from scrapy.http import Request
 from information.items import InformationItem
 
-
+'''北京大学科学研究部'''
 class PkuResearchSpider(scrapy.Spider):
     name = 'pkuResearch'
     allowed_domains = ['research.pku.edu.cn']

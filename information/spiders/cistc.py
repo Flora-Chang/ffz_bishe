@@ -5,7 +5,7 @@ import json
 from scrapy.http import Request
 from information.items import InformationItem
 
-
+'''     中国国际合作网 '''
 class CistcSpider(scrapy.Spider):
     name = 'cistc'
     allowed_domains = ['cistc.gov.cn']
