@@ -21,6 +21,8 @@ class InformationPipeline(object):
             filename = 'nsfc.json'
         elif spider.name == 'moe':
             filename = 'moe.json'
+        elif spider.name == 'npd_nsfc':
+            filename = 'npd_nsfc.json'
         else:
             filename = 'others.json'
 

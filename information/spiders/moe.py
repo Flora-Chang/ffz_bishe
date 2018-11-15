@@ -31,6 +31,8 @@ class MoeSpider(scrapy.Spider):
             yield Request(url, callback=self.parse)
 
     def parse_article(self, response):
+        time.sleep(random.randint(2, 5))
+        print("headers: ", response.headers)
         article_list = response.xpath('//*[@class="TRS_Editor"]/p/text()').extract()
         article = " ".join(article_list)
         title = response.xpath('//*[@id="content_body"]/h1/text()').extract()[0]

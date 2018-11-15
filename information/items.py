@@ -15,3 +15,6 @@ class InformationItem(scrapy.Item):
     article = scrapy.Field()
     tags = scrapy.Field()
     url = scrapy.Field()
+    author = scrapy.Field()
+    author_danwei = scrapy.Field()
+    keyword = scrapy.Field()
