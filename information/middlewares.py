@@ -7,7 +7,9 @@
 
 from scrapy import signals
 from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware
+ # from fake_useragent import UserAgent #这是一个随机UserAgent的包，里面有很多UserAgent
 import random
+# from settings import PROXIES, USER_AGENTS
 
 class InformationSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -103,7 +105,7 @@ class InformationDownloaderMiddleware(object):
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
 
-class AgentMiddleware(UserAgentMiddleware):
+class RandomUserAgentMiddleware(UserAgentMiddleware):
     def __init__(self, user_agent=""):
         self.user_agent = user_agent
 
@@ -122,7 +124,34 @@ class AgentMiddleware(UserAgentMiddleware):
     def process_request(self, request, spider):
         ua = random.choice(self.ua_list)
         request.headers.setdefault('user-Agent', ua)
+#
+# class RandomUserAgentMiddleware(object):
+#     def __init__(self, crawler):
+#         super(RandomUserAgentMiddleware, self).__init__()
+#         # self.ua = random.choice(USER_AGENTS)
+#         # self.ua_type = crawler.settings.get('RANDOM_UA_TYPE', 'random')  # 从setting文件中读取RANDOM_UA_TYPE值
+#
+#
+#     def process_request(self, request, spider):
+#         ua = random.choice(USER_AGENTS)
+#         request.headers.setdefault('User-Agent', ua)  # 这样就是实现了User-Agent的随即变换
 
+class RandomProxyMiddleware(object):
+    '''动态设置ip代理'''
+    def process_request(self, request, spider):
+        PROXIES = [
+            {'ip_port': '111.11.228.75:80', 'user_pass': ''},
+            {'ip_port': '120.198.243.22:80', 'user_pass': ''},
+            {'ip_port': '111.8.60.9:8123', 'user_pass': ''},
+            {'ip_port': '101.71.27.120:80', 'user_pass': ''},
+            {'ip_port': '122.96.59.104:80', 'user_pass': ''},
+            {'ip_port': '122.224.249.122:8088', 'user_pass': ''},
+            {'ip_port': '203.130.46.108:9090', 'user_pass': ''},
+            {'ip_port': '122.224.249.122:8088', 'user_pass': ''},
+
+        ]
+        proxy = random.choice(PROXIES)
+        request.meta["proxy"] = "http://%s" % proxy['ip_port']
 
 # class ProxyMiddleware(object):
 #     def process_request(self, request, spider):
