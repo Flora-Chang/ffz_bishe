@@ -12,15 +12,24 @@ class NpdNsfcSpider(scrapy.Spider):
     name = 'npd_nsfc'
     allowed_domains = ['npd.nsfc.gov.cn']
     start_urls = [
-                'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A01&page=1&sort=undefined',   # 数理科学部->数学
-                #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A02&page=1&sort=undefined',   # 力学
-                #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A03&page=1&sort=undefined',   # 天文学
-                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A04&page=1&sort=undefined',   # 物理学1
-                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A05&page=1&sort=undefined',    # 物理学2
-                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=F01&page=1&sort=0',   # 信息科学部->通讯与电子学
-                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=F02&page=1&sort=0',   # 信息科学部->计算机网络
-                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=F03&page=1&sort=0',   # 信息科学部->控制理论
-                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=F04&page=1&sort=0',   # 信息科学部->半导体科学与信息器件
+                # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A01&page=1&sort=undefined',   # 1. 数理科学部->数学
+                #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A02&page=1&sort=undefined',   # 2. 力学
+                #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A03&page=1&sort=undefined',   # 3. 天文学
+                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A04&page=1&sort=undefined',   # 4. 物理学1
+                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A05&page=1&sort=undefined',    # 5.  物理学2
+                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=F01&page=1&sort=0',   # 6. 信息科学部->通讯与电子学
+                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=F02&page=1&sort=0',   # 7. 信息科学部->计算机网络
+                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=F03&page=1&sort=0',   # 8. 信息科学部->控制理论
+                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=F04&page=1&sort=0',   # 9. 信息科学部->半导体科学与信息器件
+                  #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C01&page=1&sort=0',   # 10. 生命科学部-> 微生物学
+                  #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C02&page=1&sort=0',   # 11. 生命科学部 -> 植物学
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C03&page=1&sort=0',     # 12
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C04&page=1&sort=0',   # 12
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C05&page=1&sort=0',   # 12
+                    # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C06&page=1&sort=0',  # 13
+                    # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C07&page=1&sort=0',  # 13
+                    # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C08&page=1&sort=0',  # 13
+                    # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C09&page=1&sort=0',  # 13
                   ]
 
     def parse(self, response):
