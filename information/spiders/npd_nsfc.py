@@ -12,15 +12,15 @@ class NpdNsfcSpider(scrapy.Spider):
     name = 'npd_nsfc'
     allowed_domains = ['npd.nsfc.gov.cn']
     start_urls = [
-                'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A01&page=1&sort=undefined',   # 数理科学部->数学
+                # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A01&page=1&sort=undefined',   # 数理科学部->数学
                 #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A02&page=1&sort=undefined',   # 力学
                 #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A03&page=1&sort=undefined',   # 天文学
-                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A04&page=1&sort=undefined',   # 物理学1
-                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A05&page=1&sort=undefined',    # 物理学2
-                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=F01&page=1&sort=0',   # 信息科学部->通讯与电子学
-                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=F02&page=1&sort=0',   # 信息科学部->计算机网络
-                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=F03&page=1&sort=0',   # 信息科学部->控制理论
-                  # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=F04&page=1&sort=0',   # 信息科学部->半导体科学与信息器件
+                #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A04&page=1&sort=undefined',   # 物理学1
+                #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=A05&page=1&sort=undefined',    # 物理学2
+                #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=F01&page=1&sort=0',   # 信息科学部->通讯与电子学
+                #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=F02&page=1&sort=0',   # 信息科学部->计算机网络
+                #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=F03&page=1&sort=0',   # 信息科学部->控制理论
+                  'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=F04&page=1&sort=0',   # 信息科学部->半导体科学与信息器件
                   ]
 
     def parse(self, response):
@@ -32,14 +32,13 @@ class NpdNsfcSpider(scrapy.Spider):
         print("max page: ", max_page)
 
         base_url = response.url
-        for i in range(1, max_page+1):
+        for i in range(2, max_page+1):
             time.sleep(random.randint(1, 10))
             new_url = re.sub(r'page=\d+&', 'page={}&'.format(i), base_url)
             print(new_url)
             print("*"*20)
             user_agent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
             yield Request(new_url, callback=self.parse_list)
-
 
 
     def parse_list(self, response):
@@ -54,7 +53,6 @@ class NpdNsfcSpider(scrapy.Spider):
             print("#"*20)
             user_agent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9) Gecko/20080705 Firefox/3.0 Kapiko/3.0"
             yield Request(article_url, callback=self.parse_article)
-
 
 
     def parse_article(self, response):
