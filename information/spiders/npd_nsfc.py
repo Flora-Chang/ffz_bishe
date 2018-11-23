@@ -27,9 +27,9 @@ class NpdNsfcSpider(scrapy.Spider):
                     'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C04&page=1&sort=0',   # 12
                     'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C05&page=1&sort=0',   # 12
                     # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C06&page=1&sort=0',  # 13
-                    # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C07&page=1&sort=0',  # 13
-                    # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C08&page=1&sort=0',  # 13
-                    # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C09&page=1&sort=0',  # 13
+                    # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C07&page=1&sort=0',  # 14
+                    # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C08&page=1&sort=0',  # 15
+                    # 'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C09&page=1&sort=0',  # 16
                   ]
 
     def parse(self, response):
