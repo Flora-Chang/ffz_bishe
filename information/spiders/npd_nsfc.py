@@ -29,8 +29,67 @@ class NpdNsfcSpider(scrapy.Spider):
                   #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C06&page=1&sort=0',  # 13
                   #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C07&page=1&sort=0',  # 14
                   #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C08&page=1&sort=0',  # 15
-                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C09&page=1&sort=0',  # 16
-                  ]
+                  #   'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=C09&page=1&sort=0',  # 16
+
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=B01&page=1&sort=0',   # b01 化学科学部 -> 无机化学
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=B02&page=1&sort=0',  # b02 化学科学部 -> 有机化学
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=B03&page=1&sort=0',  # b03 化学科学部 -> 物理化学
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=B04&page=1&sort=0',  # b04 化学科学部 -> 高分子科学
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=B05&page=1&sort=0',  # b05 化学科学部 -> 分析化学
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=B06&page=1&sort=0',  # b06 化学科学部 -> 化学工程及工业化
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=B07&page=1&sort=0',  # b07 化学科学部 -> 环境化学
+
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=D00&page=1&sort=0',  # d00 地球科学部 -> 综合与战略规划处
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=D01&page=1&sort=0',   # d01 地球科学部 -> 地理学
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=D02&page=1&sort=0',  # d02 地球科学部 -> 地质学
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=D03&page=1&sort=0',  # d03 地球科学部 -> 地球化学
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=D04&page=1&sort=0',  # d04 地球科学部 -> 地球物理学和空间物理学
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=D05&page=1&sort=0',  # d05 地球科学部 -> 大气科学
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=D06&page=1&sort=0',  # d06 地球科学部 -> 海洋科学
+
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=E01&page=1&sort=0',   #  e01  工程与材料科学部-> 金属材料学科
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=E02&page=1&sort=0' ,   # e02  工程与材料科学部-> 无机非金属材料学科
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=E03&page=1&sort=0', # e03  工程与材料科学部-> 有机高分子材料学科
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=E04&page=1&sort=0',  # e04  工程与材料科学部-> 冶金与矿业学科
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=E05&page=1&sort=0',  # e05  工程与材料科学部-> 机械工程学科
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=E06&page=1&sort=0',  # e06  工程与材料科学部-> 工程物理与能源利用学科
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=E07&page=1&sort=0',  # e07  工程与材料科学部-> 电气科学与工程学科
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=E08&page=1&sort=0',  # e08  工程与材料科学部-> 建筑环境与结构工程学科
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=E09&page=1&sort=0',  # e09  工程与材料科学部-> 水里科学与海洋工程学科
+
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H01&page=1&sort=0', # h01  医学科学部->呼吸系统
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H02&page=1&sort=0',  # h02
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H03&page=1&sort=0',  # h03
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H04&page=1&sort=0',  # h04
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H05&page=1&sort=0',  # h05
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H06&page=1&sort=0',  # h06
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H07&page=1&sort=0',  # h07
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H08&page=1&sort=0',  # h08
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H09&page=1&sort=0',  # h09
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H10&page=1&sort=0',  # h10
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H11&page=1&sort=0',  # h11
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H12&page=1&sort=0',  # h12
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H13&page=1&sort=0',  # h13
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H14&page=1&sort=0',  # h14
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H15&page=1&sort=0',  # h15
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H16&page=1&sort=0',  # h16
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H17&page=1&sort=0',  # h17
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H18&page=1&sort=0',  # h18
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H19&page=1&sort=0',  # h19
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H20&page=1&sort=0',  # h20
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H21&page=1&sort=0',  # h21
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H22&page=1&sort=0',  # h22
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H23&page=1&sort=0',  # h23
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H24&page=1&sort=0',  # h24
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H25&page=1&sort=0',  # h25
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H26&page=1&sort=0',  # h26
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H27&page=1&sort=0',  # h27
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H28&page=1&sort=0',  # h28
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H29&page=1&sort=0',  # h29
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H30&page=1&sort=0',  # h30
+                    'http://npd.nsfc.gov.cn/areadropdet.action?areaCode=H31&page=1&sort=0',  # h31
+
+    ]
 
     def parse(self, response):
         # '//*[@id="right"]/div/div/ul/li[1]/dl/dt/a'
