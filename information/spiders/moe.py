@@ -6,6 +6,7 @@ import time
 import re
 import random
 
+
 class MoeSpider(scrapy.Spider):
     name = 'moe'
     allowed_domains = ['www.moe.gov.cn']
@@ -46,7 +47,7 @@ class MoeSpider(scrapy.Spider):
         post['article'] = article
         post['tags'] = tags
         post['url'] = response.url
-        yield  post
+        yield post
 
 
 
