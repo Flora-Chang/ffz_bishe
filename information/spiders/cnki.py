@@ -39,12 +39,12 @@ class CnkiSpider(scrapy.Spider):
             'db_opt': 'CJFQ,CDFD,CMFD,CPFD,IPFD,CCND,CCJD',
             'au_1_sel': 'AU',
             'au_1_sel2': 'AF',
-            'au_1_value1': '陈萍',
+            'au_1_value1': '周昌令',
             'au_1_value2': '北京大学',
             'au_1_special1': '=',
             'au_1_special2': '%',
             'his': '0',
-            '__': 'Sat Dec 15 2018 19:21:16 GMT+0800 (中国标准时间)',
+            '__': '{} GMT+0800 (中国标准时间)'.format(time.strftime("%a %b %d %Y %H:%M:%S",time.localtime())),
         }
         # new_data = 'action=&NaviCode=*&ua=1.21&isinEn=1&PageName=ASP.brief_result_aspx&DbPrefix=SCDB&DbCatalog=%e4%b8%ad%e5%9b%bd%e5%ad%a6%e6%9c%af%e6%96%87%e7%8c%ae%e7%bd%91%e7%bb%9c%e5%87%ba%e7%89%88%e6%80%bb%e5%ba%93&ConfigFile=SCDB.xml&db_opt=CJFQ%2CCDFD%2CCMFD%2CCPFD%2CIPFD%2CCCND%2CCCJD&au_1_sel=AU&au_1_sel2=AF&au_1_value1=%E5%B0%9A%E7%BE%A4&au_1_value2=%E5%8C%97%E4%BA%AC%E5%A4%A7%E5%AD%A6&au_1_special1=%3D&au_1_special2=%25&his=0&__=Sat%20Dec%2015%202018%2012%3A25%3A50%20GMT%2B0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)'
         # print(str_data)
