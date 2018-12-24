@@ -4,7 +4,7 @@ import time
 import scrapy
 import urllib.parse
 from scrapy.http import Request
-from information.items import InformationItem
+from information.items import Paper
 
 
 class CnkiSpider(scrapy.Spider):
@@ -137,17 +137,17 @@ class CnkiSpider(scrapy.Spider):
         #                  '&catalogName=%E8%AF%BB%E8%80%85%E6%8E%A8%E8%8D%90%0A%20%20%20%20%20%20%20%20%20%20'.format(db_info)
         # yield Request(url=reader_rec_url, callback=self.parse_reader_recommendation)
 
-        # post = InformationItem()
-        # post['title'] = title
+        paper = Paper()
+        paper['title'] = title
         # # post['publish_time'] = publish_time
-        # post['author'] = authors
-        # post['article'] = article
-        # post['keyword'] = keyword
-        # post['tags'] = tags
-        # post['author_danwei'] = author_danwei
-        # post['url'] = response.url
+        # paper['author'] = authors
+        # paper['article'] = article
+        # paper['keyword'] = keyword
+        # paper['tags'] = tags
+        # paper['author_danwei'] = author_danwei
+        # paper['url'] = response.url
 
-        # yield post
+        # yield paper
 
         # print(response.text)
         # pass
@@ -163,7 +163,7 @@ class CnkiSpider(scrapy.Spider):
             print(refer)
 
     def parse_similar_literature(self, response):  # ok
-        similar_lits = []
+        similar_liters = []
         base_url = 'http://kns.cnki.net/'
         # print(response.text)
         refers = response.xpath('//*[@target="kcmstarget"]').extract()
@@ -171,8 +171,8 @@ class CnkiSpider(scrapy.Spider):
         for refer in refers:
             url = base_url + re.findall(r'href="(.*)">', refer)[0]
             title = re.findall(r'">(.*)</a>', refer)[0]
-            similar_lits.append((title, url))
-        return similar_lits
+            similar_liters.append((title, url))
+        return similar_liters
 
     def parse_reader_recommendation(self, response):
         print(response.text)

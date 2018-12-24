@@ -18,3 +18,15 @@ class InformationItem(scrapy.Item):
     author = scrapy.Field()
     author_danwei = scrapy.Field()
     keyword = scrapy.Field()
+
+
+class Paper(scrapy.Item):
+    title = scrapy.Field()
+    authors = scrapy.Field()
+    authors_orgs = scrapy.Field()
+    abstract = scrapy.Field()
+    keywords = scrapy.Field()
+    class_num = scrapy.Field()
+    references = scrapy.Field()
+    similar_liters = scrapy.Field()
+    reader_recs = scrapy.Field()
