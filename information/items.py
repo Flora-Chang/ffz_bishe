@@ -21,12 +21,14 @@ class InformationItem(scrapy.Item):
 
 
 class Paper(scrapy.Item):
+    url = scrapy.Field()
     title = scrapy.Field()
     authors = scrapy.Field()
-    authors_orgs = scrapy.Field()
+    author_orgs = scrapy.Field()
     abstract = scrapy.Field()
     keywords = scrapy.Field()
-    class_num = scrapy.Field()
-    references = scrapy.Field()
-    similar_liters = scrapy.Field()
-    reader_recs = scrapy.Field()
+    # fund = scrapy.Field()         # 基金
+    class_nums = scrapy.Field()         # 分类号
+    references = scrapy.Field()         # 引用文献
+    similar_liters = scrapy.Field()     # 相似文献
+    reader_recs = scrapy.Field()        # 读者推荐

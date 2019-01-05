@@ -1,1 +1,15 @@
-**.pyc
+# Intellij
+.idea/
+!.idea/codeStyleSettings.xml
+**/*.iml
+*.iws
+
+# Mac
+.DS-Store
+
+# Python
+**.py[cod]
+
+# VIM
+*.swp
+*.swo
