@@ -22,8 +22,6 @@ class CnkiRandomSpider(scrapy.Spider):
 
         with open(in_file) as f:
             for idx, line in enumerate(f):
-                if idx > 5:
-                    break
                 word = line.strip()
                 print(idx, " ", word)
                 # 关键字 检索
