@@ -26,7 +26,9 @@ class InformationPipeline(object):
         elif spider.name == 'cnki':
             filename = 'cnki.json'
         elif spider.name == 'cnki_buzhua':
-            filename = 'cnki_buzhua.json'
+            filename = 'cnki.buzhua.json'
+        elif spider.name == 'cnki_random':
+            filename = 'cnki.random.json'
         else:
             filename = 'others.json'
 
