@@ -1,8 +1,8 @@
 import json
 
 # 1. 拿到所有引用和读者推荐内容，并且去掉已经抓到的
-in_file = "../data/cnki.full.json"
-out_file = "../tmp_data/cnki.keywords.txt"
+in_file = "../data/cnki.buzhua.json"
+out_file = "../resources/cnki.buzhua.keywords.txt"
 
 keywords = set()
 

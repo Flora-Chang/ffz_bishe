@@ -18,7 +18,7 @@ class CnkiRandomSpider(scrapy.Spider):
         url = 'http://kns.cnki.net/kns/request/SearchHandler.ashx'
 
         pwd = os.path.dirname(__file__)
-        in_file = os.path.join(pwd, "../../resources/cnki.keywords.txt")
+        in_file = os.path.join(pwd, "../../resources/cnki.buzhua.keywords.txt")
 
         with open(in_file) as f:
             for idx, line in enumerate(f):
