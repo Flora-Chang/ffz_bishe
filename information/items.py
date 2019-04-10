@@ -36,3 +36,12 @@ class Paper(scrapy.Item):
 
 class Author(scrapy.Item):
     url = scrapy.Field()
+
+
+class AuthorInfo(scrapy.Item):
+    url = scrapy.Field()
+    name = scrapy.Field()
+    org = scrapy.Field()  # 单位
+    doma = scrapy.Field()  # 眼睛方向
+    pub_num = scrapy.Field()  # 总发文量
+    download_num = scrapy.Field()  # 总下载量
