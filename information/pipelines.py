@@ -29,6 +29,8 @@ class InformationPipeline(object):
             filename = 'cnki.buzhua.json'
         elif spider.name == 'cnki_random':
             filename = 'cnki.random.json'
+        elif spider.name == 'cnki_authors':
+            filename = 'cnki.authors.json'
         else:
             filename = 'others.json'
 
@@ -38,3 +40,4 @@ class InformationPipeline(object):
             line = json.dumps(dict(item), ensure_ascii=False) + "\n"
             fout.write(line)
         return item
+

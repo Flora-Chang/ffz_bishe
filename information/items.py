@@ -32,3 +32,7 @@ class Paper(scrapy.Item):
     references = scrapy.Field()         # 引用文献
     similar_liters = scrapy.Field()     # 相似文献
     reader_recs = scrapy.Field()        # 读者推荐
+
+
+class Author(scrapy.Item):
+    url = scrapy.Field()

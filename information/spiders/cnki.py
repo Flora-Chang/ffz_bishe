@@ -22,11 +22,11 @@ class CnkiSpider(scrapy.Spider):
         url = 'http://kns.cnki.net/kns/request/SearchHandler.ashx'
 
         pwd = os.path.dirname(__file__)
-        in_file = os.path.join(pwd, "../../resources/pku_programs.json")
+        in_file = os.path.join(pwd, "../../resources/empty_programs.json")
 
         with open(in_file) as f:
             for idx, line in enumerate(f):
-                name = json.loads(line)['name']
+                name = json.loads(line)['name'].replace(" ", "")
                 print(idx, " ", name)
                 formdata = {
                     'action': '',
