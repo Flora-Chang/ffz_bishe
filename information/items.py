@@ -42,6 +42,11 @@ class AuthorInfo(scrapy.Item):
     url = scrapy.Field()
     name = scrapy.Field()
     org = scrapy.Field()  # 单位
-    doma = scrapy.Field()  # 眼睛方向
+    doma = scrapy.Field()  # 研究方向
     pub_num = scrapy.Field()  # 总发文量
     download_num = scrapy.Field()  # 总下载量
+    targets = scrapy.Field()  # 关注领域
+    zuigao_beiyin = scrapy.Field()  # 最高被引
+    zuigao_xiazai = scrapy.Field()  # 最高下载
+    qikan = scrapy.Field()  # 发表在期刊上的论文
+
