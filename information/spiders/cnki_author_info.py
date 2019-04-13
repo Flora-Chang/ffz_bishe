@@ -95,6 +95,8 @@ class CnkiAuthorInfoSpider(scrapy.Spider):
 
         cont_right = response.xpath('//*[@class="contRight"]').extract()
         cont_right = self.link_pat.findall(cont_right[0])
+        cont_right.append('end')
+        print(cont_right)
 
         for idx, link in enumerate(cont_right):
             link = self.base_url + link
@@ -127,7 +129,9 @@ class CnkiAuthorInfoSpider(scrapy.Spider):
                 continue
                 callback_fun = self.parse_zhidao_xuesheng
             else:
-                continue
+                callback_fun = self.parse_end
+                link = 'http://kns.cnki.net'
+
             # 最后一个执行的必须 yield self.author_info 以写出结果
             yield Request(url=link, callback=callback_fun, priority=len(cont_right)-idx)
 
@@ -214,7 +218,7 @@ class CnkiAuthorInfoSpider(scrapy.Spider):
         jijin_num = [int(num.strip().lstrip('(').rstrip(')')) for num in jijin_num]
         self.author_info['zhichi_jijin'] = list(zip(zhichi_jijin, jijin_num))
         # print("获得支持基金:", self.author_info['zhichi_jijin'])
-        yield self.author_info
+        # yield self.author_info
 
     def parse_ceng_cankao(self, response):  # 曾参考的文献 OK
         ceng_cankao_url = response.xpath('//*[@target="kcmstarget"]/@href').extract()
@@ -248,3 +252,6 @@ class CnkiAuthorInfoSpider(scrapy.Spider):
     def parse_zhidao_xuesheng(self):
         # yield self.author_info
         pass
+
+    def parse_end(self, reponse):
+        yield self.author_info
