@@ -17,7 +17,9 @@ class CnkiAuthorInfoSpider(scrapy.Spider):
         self.author_info = AuthorInfo()
         self.base_url = 'http://kns.cnki.net/kcms/detail/'
         self.url = json.loads(url)['url']
-        self.link_pat = re.compile(r'\'(frame/knetlist.aspx.*=\d+)\'')
+        self.link_pat = re.compile(r"'(frame/knetlist.aspx.*=\w+)'")
+        self.page_bar_pat = re.compile(r'ShowPage\((.*)\);')
+        self.collaborator_pat = re.compile(r"TurnPageToKnet\('au','(.*?)','(\d+)'\)")
 
     def start_requests(self):
         # 1、使用姓名和单位检索（POST）; 2、使用返回的cookie去get结果即可。
@@ -73,15 +75,12 @@ class CnkiAuthorInfoSpider(scrapy.Spider):
     def parse_basic_info(self, response):
         name = response.xpath('//*[@class="name"]/text()').extract()
         self.author_info['name'] = name
-        print("name: ", name)
 
         org = response.xpath('//*[@class="info"]/p/a/text()').extract()
         self.author_info['org'] = org
-        print("org: ", org)
 
-        doma = response.xpath('//*[@class="info"]/p[2]/text()').extract()
-        self.author_info['doma'] = doma
-        print("doma: ", doma)
+        domain = response.xpath('//*[@class="info"]/p[2]/text()').extract()
+        self.author_info['domain'] = domain
 
         num = response.xpath('//*[@class="info"]/p[3]/span/text()').extract()
         num = [x.strip() for x in num]
@@ -94,66 +93,158 @@ class CnkiAuthorInfoSpider(scrapy.Spider):
             if len(download_num) == 1:
                 self.author_info['download_num'] = int(download_num[0])
 
-        print("num: ", num)
-
         cont_right = response.xpath('//*[@class="contRight"]').extract()
         cont_right = self.link_pat.findall(cont_right[0])
-        print("cont_right: ", cont_right)
 
-        for link in cont_right:
+        for idx, link in enumerate(cont_right):
             link = self.base_url + link
-            if link.endswith('&infotype=1'):  # 关注领域
-                continue
+            if link.endswith('&infotype=1'):  # 关注领域 OK
                 callback_fun = self.parse_targets
-            elif link.endswith('&infotype=3'):  # 作者文献（最高被引， 最高下载）
+            elif link.endswith('&infotype=3'):  # 作者文献（最高被引， 最高下载） OK
                 callback_fun = self.parse_zuozhe_wenxian
-            elif link.endswith('&infotype=4&codetype=1'):  # 发表在期刊上的文献
-                continue
-
+            elif link.endswith('&infotype=4&codetype=1'):  # 发表在期刊上的文献 OK
                 callback_fun = self.parse_qikan
-            elif link.endswith('&infotype=4&codetype=4'):  # 外文期刊
-                continue
-
+            elif link.endswith('&infotype=15&codetype=au'):  # 外文期刊 OK
                 callback_fun = self.parse_waiwen_qikan
-
+            elif link.endswith('&infotype=4&codetype=4'):  # 发表在报纸上的文献
+                continue
+                callback_fun = self.parse_waiwen_qikan
+            elif link.endswith('&infotype=4&codetype=3'):  # 发表在会议上的文献  OK
+                callback_fun = self.parse_huiyi
+            elif link.endswith('&infotype=4&codetype=2'):  # 发表在博硕上的文献
+                continue
+                callback_fun = self.parse_waiwen_qikan
+            elif link.endswith('&infotype=5'):  # 曾参考的文献 OK
+                callback_fun = self.parse_ceng_cankao
+            elif link.endswith('&infotype=6'):  # 作者的导师
+                continue
+                callback_fun = self.parse_daoshi
+            elif link.endswith('&infotype=7'):  # 合作作者 OK
+                callback_fun = self.parse_collaborators
+            elif link.endswith('&infotype=2'):  # 获得支持基金 OK
+                callback_fun = self.parse_zhichi_jijin
+            elif link.endswith('&infotype=8'):  # 指导的学生
+                continue
+                callback_fun = self.parse_zhidao_xuesheng
             else:
                 continue
-
-            yield Request(url=link, callback=callback_fun)
+            # 最后一个执行的必须 yield self.author_info 以写出结果
+            yield Request(url=link, callback=callback_fun, priority=len(cont_right)-idx)
 
     def parse_targets(self, response):  # 关注领域, OK
         targets = response.xpath('//*[@target="kcmstarget"]/text()').extract()
         self.author_info['targets'] = targets
 
-    def parse_zuozhe_wenxian(self, response):
+    def parse_zuozhe_wenxian(self, response):   # 发文总量, 下载总量, 最高被引, 最高下载 OK
         title_side = response.xpath('//*[@class="titleSide"]/span/b/text()').extract()  # [发文总量, 下载总量]
         if len(title_side) == 2:
-            self.author_info['pub_num'] = int(title_side[0])
-            self.author_info['download_num'] = int(title_side[0])
+            if 'pub_num' not in self.author_info:
+                self.author_info['pub_num'] = int(title_side[0])
+            if 'download_num' not in self.author_info:
+                self.author_info['download_num'] = int(title_side[1])
 
-        wenxian = response.xpath('//*[@class="ebBd"]')
-        print("wenxian: ", wenxian.extract())
+        zuigao_beiyin_url = response.xpath('//*[@class="essayBox"]//*[@target="kcmstarget"]/@href').extract()
+        zuigao_beiyin_url = [self.base_url + url for url in zuigao_beiyin_url]
+        zuigao_beiyin_name = response.xpath('//*[@class="essayBox"]//*[@target="kcmstarget"]/text()').extract()
+        zuigao_beiyin_num = response.xpath('//*[@class="essayBox"]//*[@target="kcmstarget"]/../b/text()').extract()
+        self.author_info['zuigao_beiyin'] = list(zip(zuigao_beiyin_url, zuigao_beiyin_name, zuigao_beiyin_num))
+        # print("最高被引：", self.author_info['zuigao_beiyin'])
 
-        wenxian = wenxian[0].xpath('//*[@target="kcmstarget"]').extract()
-        print("wenxian: ", type(wenxian), len(wenxian), wenxian)
-
-        beiyin_url = response.xpath('//*[@target="kcmstarget"]/@href').extract()
-        print("beiyin_url: ", beiyin_url)
-
-        beiyin_names = response.xpath('//*[@target="kcmstarget"]/text()').extract()
-        print("beiyin_names: ", beiyin_names)
-
-        beiyin_num = response.xpath('//*[@target="kcmstarget"]/../b/text()').extract()
-        print("beiyin_num: ", beiyin_num)
+        zuigao_xiazai_url = response.xpath('//*[@class="essayBox border"]//*[@target="kcmstarget"]/@href').extract()
+        zuigao_xiazai_url = [self.base_url + url for url in zuigao_xiazai_url]
+        zuigao_xiazai_name = response.xpath('//*[@class="essayBox border"]//*[@target="kcmstarget"]/text()').extract()
+        zuigao_xiazai_num = response.xpath('//*[@class="essayBox border"]//*[@target="kcmstarget"]/../b/text()').extract()
+        self.author_info['zuigao_xiazai'] = list(zip(zuigao_xiazai_url, zuigao_xiazai_name, zuigao_xiazai_num))
+        # print("最高下载：", self.author_info['zuigao_xiazai'])
 
     def parse_qikan(self, response):  # 发表在期刊上的论文, OK
         qikan_url = response.xpath('//*[@target="kcmstarget"]/@href').extract()
         qikan_url = [self.base_url + url for url in qikan_url]
 
         qikan_name = response.xpath('//*[@target="kcmstarget"]/text()').extract()
-        self.author_info['qikan'] = list(zip(qikan_url, qikan_name))
+        tmp_qikan = list(zip(qikan_url, qikan_name))
+
+        total_num = response.xpath('//*[@id="pc_CJFQ"]/text()').extract()
+        if len(total_num) == 1:
+            total_num = int(total_num[0])
+        else:
+            total_num = len(tmp_qikan)
+        self.author_info['qikan_num'] = total_num
+        self.author_info['qikan'] = tmp_qikan
+        # print("total_num: ", self.author_info['qikan_num'])
+
+        self.author_info['qikan'] = tmp_qikan
+        # print("发表在期刊上的论文: ", len(self.author_info['qikan']), self.author_info['qikan'])
 
     def parse_waiwen_qikan(self, response):
-        # print("qikan: ", response.body.decoce('utf-8'))
-        print('waiwen_qikan')
+        qikan_url = response.xpath('//*[@target="kcmstarget"]/@href').extract()
+        qikan_url = [self.base_url + url for url in qikan_url]
 
+        qikan_name = response.xpath('//*[@target="kcmstarget"]/text()').extract()
+        tmp_qikan = list(zip(qikan_url, qikan_name))
+
+        total_num = response.xpath('//*[@id="pc_WWJD"]/text()').extract()
+        if len(total_num) == 1:
+            total_num = int(total_num[0])
+        else:
+            total_num = len(tmp_qikan)
+        self.author_info['waiwen_qikan_num'] = total_num
+        self.author_info['waiwen_qikan'] = tmp_qikan
+        # print("waiwen_total_num: ", self.author_info['waiwen_qikan_num'])
+
+    def parse_huiyi(self, response):    # 发表在会议上的文章 OK
+        qikan_url = response.xpath('//*[@target="kcmstarget"]/@href').extract()
+        qikan_url = [self.base_url + url for url in qikan_url]
+
+        qikan_name = response.xpath('//*[@target="kcmstarget"]/text()').extract()
+        tmp_qikan = list(zip(qikan_url, qikan_name))
+
+        total_num = response.xpath('//*[@id="pc_CPFD"]/text()').extract()
+        if len(total_num) == 1:
+            total_num = int(total_num[0])
+        else:
+            total_num = len(tmp_qikan)
+        self.author_info['huiyi_num'] = total_num
+        self.author_info['huiyi'] = tmp_qikan
+        # print("total_num: ", self.author_info['huiyi_num'])
+
+    def parse_zhichi_jijin(self, response):     # 获得支持基金 OK
+        zhichi_jijin = response.xpath('//*[@target="kcmstarget"]/text()').extract()
+        jijin_num = response.xpath('//*[@target="kcmstarget"]/../b/text()').extract()
+        jijin_num = [int(num.strip().lstrip('(').rstrip(')')) for num in jijin_num]
+        self.author_info['zhichi_jijin'] = list(zip(zhichi_jijin, jijin_num))
+        # print("获得支持基金:", self.author_info['zhichi_jijin'])
+        yield self.author_info
+
+    def parse_ceng_cankao(self, response):  # 曾参考的文献 OK
+        ceng_cankao_url = response.xpath('//*[@target="kcmstarget"]/@href').extract()
+        ceng_cankao_url = [self.base_url + url for url in ceng_cankao_url]
+        ceng_cankao_name = response.xpath('//*[@target="kcmstarget"]/text()').extract()
+        tmp_cankao = list(zip(ceng_cankao_url, ceng_cankao_name))
+        total_num = response.xpath('//*[@id="pc_CPFD"]/text()').extract()
+        if len(total_num) == 1:
+            total_num = int(total_num[0])
+        else:
+            total_num = len(tmp_cankao)
+        self.author_info['ceng_cankao_num'] = total_num
+        self.author_info['ceng_cankao'] = tmp_cankao
+        # print("曾参考的文献:", self.author_info['ceng_cankao'])
+
+    def parse_collaborators(self, response):
+        same_collaborators = []
+        same_org = response.xpath('//*[@class="coopAuthor"]/div[1]//*[@target="kcmstarget"]/@onclick').extract()
+        for info in same_org:
+            same_collaborators.extend(self.collaborator_pat.findall(info))
+        same_collaborators = [(x[0], int(x[1])) for x in same_collaborators]
+        self.author_info['same_org_collaborator'] = same_collaborators
+
+        other_collaborators = []
+        other_org = response.xpath('//*[@class="coopAuthor"]/div[2]//*[@target="kcmstarget"]/@onclick').extract()
+        for info in other_org:
+            other_collaborators.extend(self.collaborator_pat.findall(info))
+        other_collaborators = [(x[0], int(x[1])) for x in other_collaborators]
+        self.author_info['other_org_collaborator'] = other_collaborators
+
+    def parse_zhidao_xuesheng(self):
+        # yield self.author_info
+        pass
