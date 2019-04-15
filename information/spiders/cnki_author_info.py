@@ -239,15 +239,20 @@ class CnkiAuthorInfoSpider(scrapy.Spider):
         same_org = response.xpath('//*[@class="coopAuthor"]/div[1]//*[@target="kcmstarget"]/@onclick').extract()
         for info in same_org:
             same_collaborators.extend(self.collaborator_pat.findall(info))
-        same_collaborators = [(x[0], int(x[1])) for x in same_collaborators]
+        same_collaborators = [(x[0], int(x[1]), "http://nvsm.cnki.net/kns/popup/knetsearchNew.aspx?sdb=CJFQ&sfield=作者&skey={}&scode={}".format(x[0], x[1])) for x in same_collaborators]
         self.author_info['same_org_collaborator'] = same_collaborators
+        print(self.author_info['same_org_collaborator'])
 
         other_collaborators = []
         other_org = response.xpath('//*[@class="coopAuthor"]/div[2]//*[@target="kcmstarget"]/@onclick').extract()
         for info in other_org:
             other_collaborators.extend(self.collaborator_pat.findall(info))
-        other_collaborators = [(x[0], int(x[1])) for x in other_collaborators]
+        other_collaborators = [(x[0], int(x[1]), "http://nvsm.cnki.net/kns/popup/knetsearchNew.aspx?sdb=CJFQ&sfield=作者&skey={}&scode={}".format(x[0], x[1])) for x in other_collaborators]
         self.author_info['other_org_collaborator'] = other_collaborators
+        print(self.author_info['other_org_collaborator'])
+
+
+
 
     def parse_zhidao_xuesheng(self):
         # yield self.author_info

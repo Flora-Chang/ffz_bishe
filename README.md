@@ -1,3 +1,6 @@
+# 新建爬虫
+scrapy genspider cnki_new_spider "cnki.net"
+
 # 知网数据
 1. 根据作者和单位抓取的文章：cnki.*.json
 2. 引用、读者推荐：cnki.cite.*.json

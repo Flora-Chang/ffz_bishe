@@ -1,13 +1,17 @@
 #! /bin/bash
 
-FILENAME='data/cnki.authors.part.1'
-OUT_FILE='resources/done.cnki.authors.1.json'
+IN_FILE='data/cnki.authors.part.'
+OUT_FILE='resources/done.cnki.authors.'
 
-cat ${FILENAME} | while read line
-do
-    scrapy crawl cnki_author_info -a url="${line}"
-    echo ${line} >> ${OUT_FILE}
+for (( i = 4; i <= 9; ++i )); do
+    FILENAME=${IN_FILE}${i}
+    cat ${FILENAME} | while read line
+    do
+        scrapy crawl cnki_author_info -a url="${line}"
+        echo ${line} >> ${OUT_FILE}${i}
+    done
 done
+
 
 # 修改内容
 # 1. FILENAME
