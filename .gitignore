@@ -1,6 +1,5 @@
 # Intellij
 .idea/
-!.idea/codeStyleSettings.xml
 **/*.iml
 *.iws
 
