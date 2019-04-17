@@ -109,6 +109,7 @@ class CnkiAuthorInfoSpider(scrapy.Spider):
             elif link.endswith('&infotype=4&codetype=1'):  # 发表在期刊上的文献 OK
                 callback_fun = self.parse_qikan
             elif link.endswith('&infotype=15&codetype=au'):  # 外文期刊 OK
+                continue
                 callback_fun = self.parse_waiwen_qikan
             elif link.endswith('&infotype=4&codetype=4'):  # 发表在报纸上的文献
                 continue
