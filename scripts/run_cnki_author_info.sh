@@ -3,7 +3,7 @@
 IN_FILE='data/cnki.authors.part.'
 OUT_FILE='resources/done.cnki.authors.'
 
-for (( i = 4; i <= 9; ++i )); do
+for (( i = 1; i <= 3; ++i )); do
     FILENAME=${IN_FILE}${i}
     cat ${FILENAME} | while read line
     do

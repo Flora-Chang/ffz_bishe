@@ -16,10 +16,12 @@ class CnkiAuthorInfoSpider(scrapy.Spider):
         super(CnkiAuthorInfoSpider, self).__init__(*args, **kwargs)
         self.author_info = AuthorInfo()
         self.base_url = 'http://kns.cnki.net/kcms/detail/'
+        self.paper_base_url = 'http://kns.cnki.net'
         self.url = json.loads(url)['url']
         self.link_pat = re.compile(r"'(frame/knetlist.aspx.*=\w+)'")
         self.page_bar_pat = re.compile(r'ShowPage\((.*)\);')
         self.collaborator_pat = re.compile(r"TurnPageToKnet\('au','(.*?)','(\d+)'\)")
+        self.author_info['url'] = self.url
 
     def start_requests(self):
         # 1、使用姓名和单位检索（POST）; 2、使用返回的cookie去get结果即可。
@@ -148,14 +150,14 @@ class CnkiAuthorInfoSpider(scrapy.Spider):
                 self.author_info['download_num'] = int(title_side[1])
 
         zuigao_beiyin_url = response.xpath('//*[@class="essayBox"]//*[@target="kcmstarget"]/@href').extract()
-        zuigao_beiyin_url = [self.base_url + url for url in zuigao_beiyin_url]
+        zuigao_beiyin_url = [self.paper_base_url + url.strip() for url in zuigao_beiyin_url]
         zuigao_beiyin_name = response.xpath('//*[@class="essayBox"]//*[@target="kcmstarget"]/text()').extract()
         zuigao_beiyin_num = response.xpath('//*[@class="essayBox"]//*[@target="kcmstarget"]/../b/text()').extract()
         self.author_info['zuigao_beiyin'] = list(zip(zuigao_beiyin_url, zuigao_beiyin_name, zuigao_beiyin_num))
         # print("最高被引：", self.author_info['zuigao_beiyin'])
 
         zuigao_xiazai_url = response.xpath('//*[@class="essayBox border"]//*[@target="kcmstarget"]/@href').extract()
-        zuigao_xiazai_url = [self.base_url + url for url in zuigao_xiazai_url]
+        zuigao_xiazai_url = [self.paper_base_url + url.strip() for url in zuigao_xiazai_url]
         zuigao_xiazai_name = response.xpath('//*[@class="essayBox border"]//*[@target="kcmstarget"]/text()').extract()
         zuigao_xiazai_num = response.xpath('//*[@class="essayBox border"]//*[@target="kcmstarget"]/../b/text()').extract()
         self.author_info['zuigao_xiazai'] = list(zip(zuigao_xiazai_url, zuigao_xiazai_name, zuigao_xiazai_num))
@@ -163,7 +165,7 @@ class CnkiAuthorInfoSpider(scrapy.Spider):
 
     def parse_qikan(self, response):  # 发表在期刊上的论文, OK
         qikan_url = response.xpath('//*[@target="kcmstarget"]/@href').extract()
-        qikan_url = [self.base_url + url for url in qikan_url]
+        qikan_url = [self.paper_base_url + url.strip() for url in qikan_url]
 
         qikan_name = response.xpath('//*[@target="kcmstarget"]/text()').extract()
         tmp_qikan = list(zip(qikan_url, qikan_name))
@@ -182,7 +184,7 @@ class CnkiAuthorInfoSpider(scrapy.Spider):
 
     def parse_waiwen_qikan(self, response):
         qikan_url = response.xpath('//*[@target="kcmstarget"]/@href').extract()
-        qikan_url = [self.base_url + url for url in qikan_url]
+        qikan_url = [self.paper_base_url + url.strip() for url in qikan_url]
 
         qikan_name = response.xpath('//*[@target="kcmstarget"]/text()').extract()
         tmp_qikan = list(zip(qikan_url, qikan_name))
@@ -198,7 +200,7 @@ class CnkiAuthorInfoSpider(scrapy.Spider):
 
     def parse_huiyi(self, response):    # 发表在会议上的文章 OK
         qikan_url = response.xpath('//*[@target="kcmstarget"]/@href').extract()
-        qikan_url = [self.base_url + url for url in qikan_url]
+        qikan_url = [self.paper_base_url + url.strip() for url in qikan_url]
 
         qikan_name = response.xpath('//*[@target="kcmstarget"]/text()').extract()
         tmp_qikan = list(zip(qikan_url, qikan_name))
@@ -222,7 +224,7 @@ class CnkiAuthorInfoSpider(scrapy.Spider):
 
     def parse_ceng_cankao(self, response):  # 曾参考的文献 OK
         ceng_cankao_url = response.xpath('//*[@target="kcmstarget"]/@href').extract()
-        ceng_cankao_url = [self.base_url + url for url in ceng_cankao_url]
+        ceng_cankao_url = [self.paper_base_url + url.strip() for url in ceng_cankao_url]
         ceng_cankao_name = response.xpath('//*[@target="kcmstarget"]/text()').extract()
         tmp_cankao = list(zip(ceng_cankao_url, ceng_cankao_name))
         total_num = response.xpath('//*[@id="pc_CPFD"]/text()').extract()
@@ -250,9 +252,6 @@ class CnkiAuthorInfoSpider(scrapy.Spider):
         other_collaborators = [(x[0], int(x[1]), "http://nvsm.cnki.net/kns/popup/knetsearchNew.aspx?sdb=CJFQ&sfield=作者&skey={}&scode={}".format(x[0], x[1])) for x in other_collaborators]
         self.author_info['other_org_collaborator'] = other_collaborators
         print(self.author_info['other_org_collaborator'])
-
-
-
 
     def parse_zhidao_xuesheng(self):
         # yield self.author_info

@@ -32,7 +32,7 @@ class InformationPipeline(object):
         elif spider.name == 'cnki_authors':
             filename = 'cnki.authors.json'
         elif spider.name == 'cnki_author_info':
-            filename = 'cnki.author_info.b.json'
+            filename = 'cnki.author_info.a.json'
         else:
             filename = 'others.json'
 
