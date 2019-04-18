@@ -12,3 +12,7 @@
 # VIM
 *.swp
 *.swo
+# data
+data/
+resources/
+*~
