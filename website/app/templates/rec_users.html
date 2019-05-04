@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>推荐用户</title>
+  <script src="../static/jquery-3.4.0.min.js"></script>
+
+  <style type="text/css">
+    body {
+      width: 80%;
+      margin-left: 10%;
+      margin_right: 10%;
+    }
+    .user_main {
+      background-color: #f8d7da;
+      /*width: 80%;*/
+      /*margin-left: 10%;*/
+      /*margin_right: 10%;*/
+      /*border: 1px solid;*/
+      padding: 10px;
+    }
+
+    #left {
+      float: left;
+      width: 50%;
+      /*margin-left: 10%;*/
+      /*border: 1px solid;*/
+      /*border-right: 2px dotted palevioletred;*/
+      background-color: #bee5eb;
+      padding-bottom: 10px;
+    }
+
+    #right {
+      float: right;
+      width: 50%;
+      /*margin-right: 10%;*/
+      /*border: 1px solid;*/
+      background-color: #ffeeba;
+      padding-bottom: 10px;
+    }
+
+    .title {
+      margin-left: 80px;
+    }
+
+    .hr_user {
+      border-top: dotted green;
+    }
+
+    .header {
+      text-align: center;
+      font-size: 30px;
+      color: red;
+    }
+
+    .paper {
+      text-indent: 2em;
+    }
+
+    .text {
+      color: red;
+      margin-left: 15px;
+    }
+
+    .paper_text {
+      color: green;
+    }
+
+    .method_head {
+      text-align: center;
+      color: darkgreen;
+      font-size: 25px;
+    }
+    
+  </style>
+
+  <script type="text/javascript">
+    function get_user_info(data, user_name) {
+      var div_user = document.createElement("div");
+      div_user.className = "user";
+
+      var div_name = document.createElement("div");
+      div_name.className = "user_name";
+      var name_text = document.createElement("div");
+      name_text.innerText = "姓名： ";
+      name_text.style.cssFloat = "left";
+      name_text.style.width = "100px";
+      name_text.className = "text name_text";
+      div_name.appendChild(name_text);
+      var name_info = document.createElement("div");
+      name_info.innerText = data.users[user_name].name;
+      div_name.appendChild(name_info);
+      div_user.appendChild(div_name);
+
+      var div_domains = document.createElement("div");
+      div_domains.className = "user_domains";
+      var domains_text = document.createElement("div");
+      domains_text.innerText = "研究领域： ";
+      domains_text.style.cssFloat = "left";
+      domains_text.style.width = "100px";
+      domains_text.className = "text domains_text";
+      div_domains.appendChild(domains_text);
+      var domains_info = document.createElement("div");
+      domains_info.innerText =data.users[user_name].domains;
+      div_domains.appendChild(domains_info);
+      div_user.appendChild(div_domains);
+
+      // var div_targets = document.createElement("div");
+      // div_targets.className = "user_domains";
+      // var targets_text = document.createElement("div");
+      // targets_text.innerText = "关注领域： ";
+      // targets_text.style.cssFloat = "left";
+      // targets_text.style.width = "100px";
+      // targets_text.className = "text targets_text";
+      // div_targets.appendChild(targets_text);
+      // var targets_info = document.createElement("div");
+      // targets_info.innerText = data.users[user_name].targets;
+      // div_targets.appendChild(targets_info);
+      // div_user.appendChild(div_targets);
+
+      var div_papers = document.createElement("div");
+      div_papers.className = "user_paper";
+      var papers_text = document.createElement("div");
+      papers_text.innerText = "发表论文：";
+      papers_text.className = "text papers_text";
+
+      div_papers.appendChild(papers_text);
+
+      $.each(data.users[user_name].pub_papers, function (i, item) {
+        div_papers.appendChild(get_paper_info(data.papers, i, item));
+        if (i < data.users[user_name].pub_papers.length - 1) {
+          var hr = get_hr();
+          hr.className += " hr_paper";
+          div_papers.appendChild(hr);
+        }
+      });
+
+      div_user.appendChild(div_papers);
+      return div_user;
+    }
+
+    function get_paper_info(data_papers, idx, rec_paper) {
+      var paper = document.createElement("div");
+      paper.className = "paper";
+      paper.id = "rec_paper_" + idx;
+
+      var title = document.createElement("div");
+      title.className = "title";
+      // var title_text = document.createElement("div");
+      // title_text.className = "paper_text";
+      // title_text.innerText = "标题：";
+      // title_text.style.cssFloat = "left";
+      // title_text.style.width = "100px";
+      // title.appendChild(title_text);
+      // var title_info = document.createElement("div");
+
+      title.innerText = idx + 1 + ". " + data_papers[rec_paper].title;
+
+      // title.appendChild(title_info);
+      paper.appendChild(title);
+
+      // var keywords = document.createElement("div");
+      // keywords.className = "keywords";
+      // var keywords_text = document.createElement("div");
+      // keywords_text.className = "paper_text";
+      // keywords_text.innerText = "关键字：";
+      // keywords_text.style.cssFloat = "left";
+      // keywords_text.style.width = "100px";
+      // keywords.appendChild(keywords_text);
+      // var keywords_info = document.createElement("div");
+      // keywords_info.innerText = data_papers[rec_paper].keywords;
+      // keywords.appendChild(keywords_info);
+      // paper.appendChild(keywords);
+
+      // var abstract = document.createElement("div");
+      // abstract.className = "abstract";
+      // var abstract_text = document.createElement("div");
+      // abstract_text.className = "paper_text";
+      // abstract_text.innerText = "摘要：";
+      // abstract_text.style.cssFloat = "left";
+      // abstract_text.style.width = "100px";
+      // abstract.appendChild(abstract_text);
+      // var abstract_info = document.createElement("div");
+      // abstract_info.innerText = data_papers[rec_paper].abstract;
+      // abstract.appendChild(abstract_info);
+      // paper.appendChild(abstract);
+
+      return paper;
+    }
+
+    function get_hr() {
+      var hr = document.createElement("hr");
+      hr.style.display = "block";
+      hr.className = "hr";
+      return hr;
+    }
+
+    function btn_user_click() {
+      var name = $("#input-user").val();
+      $.ajax({
+        type: 'GET',
+        url: 'users_info.json',
+        datatype: 'json',
+        success: function (data) {
+          // 需要求改格式
+          console.log(data);
+          var user_main = get_user_info(data, name);
+          user_main.className += " user_main";
+          var main_user_info = document.getElementById("user_main");
+          main_user_info.replaceWith(user_main);
+
+          // 推荐的人
+          // var main_part = document.getElementsByClassName("main_part");
+          // main_part.style.display = "block";
+
+          var left = document.getElementById("left");
+          left.style.display = "block";
+          var rec_users_left = document.getElementById("div_left");
+          // rec_users_left.style.display = "block";
+          $.each(data.users[name].rec_users_nn, function (i, item) {  // rec_users_else
+            console.log(item);
+            console.log(data.users[item]);
+            var div = get_user_info(data, item);
+            div.id = "rec_user_" + i;
+            div.className = "user";
+            rec_users_left.appendChild(div);
+
+            // 修改颜色
+            if (i < data.users[name].rec_users_nn.length - 1) {
+              var hr = get_hr();
+              hr.className += " hr_user";
+              rec_users_left.appendChild(hr);
+            }
+          });
+
+          var right = document.getElementById("right");
+          right.style.display = "block";
+
+          var rec_users_right = document.getElementById("div_right");
+          // rec_users_right.style.display = "block";
+          $.each(data.users[name].rec_users_nn, function (i, item) {
+            console.log(item);
+            console.log(data.users[item]);
+            var div = get_user_info(data, item);
+            div.id = "rec_user_" + i;
+            div.className = "user";
+            rec_users_right.appendChild(div);
+
+            // 修改颜色
+            if (i < data.users[name].rec_users_nn.length - 1) {
+              var hr = get_hr();
+              hr.className += " hr_user";
+              rec_users_right.appendChild(hr);
+            }
+          });
+        },
+        error: function () {
+          alert("获取数据失败");
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+<div class="header header-input" style="margin-bottom: 25px;">
+  <input id="input-user" name="user" type="text" style="width:200px; height:20px; text-align:center;" value="詹嘉"/>
+  <button id="bt-user" style="height:25px;" onclick="btn_user_click()">确定</button>
+</div>
+
+<div id="user_main" class="user_main" style="display: none;"></div>
+
+<div id="left" class="main_part" style="display: none;">
+  <div id="head_left" class="method_head">SOMETHING</div>
+  <div id="div_left"></div>
+</div>
+
+<div id="right" class="main_part" style="display: none;">
+  <div id="head_right" class="method_head">NN</div>
+  <div id="div_right"></div>
+</div>
+
+</body>
+</html>
