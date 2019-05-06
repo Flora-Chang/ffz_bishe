@@ -5,7 +5,7 @@ from app import app
 from flask import render_template
 from flask import jsonify
 
-users_info = json.load(open(os.path.join(os.getcwd(), "app/data/users_info.json"), "r"))
+users_info = json.load(open(os.path.join(os.getcwd(), "app/data/example.json"), "r"))
 
 
 @app.route('/')

@@ -8,7 +8,6 @@ import os
 import json
 import codecs
 
-
 class InformationPipeline(object):
     def process_item(self, item, spider):
         if spider.name == 'pkuResearch':
@@ -26,7 +25,7 @@ class InformationPipeline(object):
         elif spider.name == 'cnki':
             filename = 'cnki.json'
         elif spider.name == 'cnki_buzhua':
-            filename = 'cnki.buzhua.json'
+            filename = 'cnki.buzhua.201904.json'
         elif spider.name == 'cnki_random':
             filename = 'cnki.random.json'
         elif spider.name == 'cnki_authors':
