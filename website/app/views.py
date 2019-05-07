@@ -5,12 +5,19 @@ from app import app
 from flask import render_template
 from flask import jsonify
 
-users_info = json.load(open(os.path.join(os.getcwd(), "app/data/example.json"), "r"))
+users_info = json.load(open(os.path.join(os.getcwd(), "app/data/recommend.wuli.programs.json"), "r"))
 
 
 @app.route('/')
+@app.route('/neural.html')
 def index():
-    return render_template("index.html")
+    return render_template("neural.html")
+
+
+@app.route('/mean')
+@app.route('/mean.html')
+def mean():
+    return render_template("mean.html")
 
 
 @app.route("/users_info.json", methods=["GET"])

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Neural</title>
+  <script src="../static/jquery-3.4.0.min.js"></script>
+
+  <style type="text/css">
+    body {
+      width: 80%;
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+    /*.rec_title {*/
+    /*  margin-left: 20px;*/
+    /*  color: red;*/
+    /*}*/
+
+    .rec_title {
+      text-align: center;
+      font-size: 20px;
+      color: red;
+    }
+
+    .rec_articles {
+      float: left;
+      width: 33%;
+      padding-left: 0.2%;
+      border-right: 1px solid red;
+    }
+
+    .rec_articles_item {
+      /*padding: 10px;*/
+    }
+
+    #rec_right {
+      float: right;
+    }
+
+    .hr_main {
+      /*height: 10px;*/
+      border-top: dotted blue;
+    }
+    
+    .hr_user {
+      border-top: dotted green;
+    }
+
+    .title {
+      margin-left: 60px;
+    }
+
+    .header {
+      text-align: center;
+      font-size: 20px;
+      color: red;
+    }
+
+    .paper {
+      text-indent: 2em;
+    }
+
+    .text {
+      color: red;
+      margin-left: 10px;
+      width: 80px;
+    }
+
+    .paper_text {
+      color: green;
+    }
+
+    .user_main {
+      background-color: #f8d7da;
+      /*width: 80%;*/
+      /*margin-left: 10%;*/
+      /*margin_right: 10%;*/
+      /*border: 1px solid;*/
+      padding: 10px;
+
+    }
+
+    #rec_papers {
+      background-color: #bee5eb;
+      /*width: 80%;*/
+      /*margin-left: 10%;*/
+      /*margin_right: 10%;*/
+      /*padding-bottom: 100px;*/
+      height: 100%;
+      overflow: hidden;
+      padding-bottom: 10px;
+    }
+
+    #rec_users_box {
+      background-color: #b1dfbb;
+      /*width: 80%;*/
+      /*margin-left: 10%;*/
+      /*margin_right: 10%;*/
+      padding-bottom: 10px;
+    }
+    
+  </style>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var url =  window.location.href;
+      var index = url.indexOf("name");
+      console.log(index);
+      if (index != -1) {
+        var name = decodeURI(url.slice(index+5, url.length));
+        document.getElementById("input-user").value = name;
+        btn_user_click();
+      }
+    });
+
+    function get_user_info(user) {
+      var div_user = document.createElement("div");
+      div_user.className = "user";
+
+      var div_name = document.createElement("div");
+      div_name.className = "user_name";
+      var name_text = document.createElement("div");
+      name_text.innerText = "姓名： ";
+      name_text.style.cssFloat = "left";
+      // name_text.style.width = "100px";
+      name_text.className = "text name_text";
+      div_name.appendChild(name_text);
+
+      var name_info = document.createElement("div");
+      name_info.innerText = user.name;
+      div_name.appendChild(name_info);
+
+      div_user.appendChild(div_name);
+
+      var div_domains = document.createElement("div");
+      div_domains.className = "user_domains";
+      var domains_text = document.createElement("div");
+      domains_text.innerText = "研究领域： ";
+      domains_text.style.cssFloat = "left";
+      // domains_text.style.width = "100px";
+      domains_text.className = "text domains_text";
+      div_domains.appendChild(domains_text);
+
+      var domains_info = document.createElement("div");
+      if (user.domain_not_cut == null) {
+        domains_info.innerText = user.domain;
+      } else {
+        domains_info.innerText = user.domain_not_cut;
+      }
+      div_domains.appendChild(domains_info);
+
+      div_user.appendChild(div_domains);
+
+      // var div_targets = document.createElement("div");
+      // div_targets.className = "user_domains";
+      // var targets_text = document.createElement("div");
+      // targets_text.innerText = "关注领域： ";
+      // targets_text.style.cssFloat = "left";
+      // targets_text.style.width = "100px";
+      // targets_text.className = "text targets_text";
+      // div_targets.appendChild(targets_text);
+      // var targets_info = document.createElement("div");
+      // targets_info.innerText = data.users[user_name].targets;
+      // div_targets.appendChild(targets_info);
+      // div_user.appendChild(div_targets);
+
+      var div_papers = document.createElement("div");
+      div_papers.className = "user_paper";
+
+      var papers_text = document.createElement("div");
+      papers_text.innerText = "发表论文：";
+      papers_text.className = "text papers_text";
+      div_papers.appendChild(papers_text);
+
+      $.each(user.articles.slice(0, 5), function (idx, item) {
+        // div_papers.appendChild(get_paper_info(data.papers, i, item));
+        // console.log("index: ", idx);
+        // console.log(item);
+        var paper = document.createElement("div");
+        paper.className = "paper";
+        paper.id = "rec_paper_" + idx;
+
+        // 这里需要添加链接
+        var title = document.createElement("a");
+        title.className = "title";
+        title.href = item.url;
+        if (item.keywords != "") {
+          title.innerText = idx + 1 + ". " + item.title + "\t【" + item.keywords + "】";
+        } else {
+          title.innerText = idx + 1 + ". " + item.title;
+        }
+        paper.appendChild(title);
+
+        // var keywords = document.createElement("div");
+        // keywords.className = "keywords";
+        // keywords.innerText = "keywords: " + item.keywords;
+        // paper.appendChild(keywords);
+
+        div_papers.appendChild(paper);
+
+        // if (idx < user.articles.length - 1) {
+        //   var hr = get_hr();
+        //   hr.className += " hr_paper";
+        //   div_papers.appendChild(hr);
+        // }
+      });
+
+      div_user.appendChild(div_papers);
+      return div_user;
+    }
+
+    function get_paper_info(data_papers, idx, rec_paper) {
+      var paper = document.createElement("div");
+      paper.className = "paper";
+      paper.id = "rec_paper_" + idx;
+
+      var title = document.createElement("div");
+      title.className = "title";
+      // var title_text = document.createElement("div");
+      // title_text.className = "paper_text";
+      // title_text.innerText = "标题：";
+      // title_text.style.cssFloat = "left";
+      // title_text.style.width = "100px";
+      // title.appendChild(title_text);
+      // var title_info = document.createElement("div");
+      title.innerText = idx + 1 + ". " + data_papers[rec_paper].title;
+
+      // title.appendChild(title_info);
+      paper.appendChild(title);
+
+      // var keywords = document.createElement("div");
+      // keywords.className = "keywords";
+      // var keywords_text = document.createElement("div");
+      // keywords_text.className = "paper_text";
+      // keywords_text.innerText = "关键字：";
+      // keywords_text.style.cssFloat = "left";
+      // keywords_text.style.width = "100px";
+      // keywords.appendChild(keywords_text);
+      // var keywords_info = document.createElement("div");
+      // keywords_info.innerText = data_papers[rec_paper].keywords;
+      // keywords.appendChild(keywords_info);
+      // paper.appendChild(keywords);
+
+      // var abstract = document.createElement("div");
+      // abstract.className = "abstract";
+      // var abstract_text = document.createElement("div");
+      // abstract_text.className = "paper_text";
+      // abstract_text.innerText = "摘要：";
+      // abstract_text.style.cssFloat = "left";
+      // abstract_text.style.width = "100px";
+      // abstract.appendChild(abstract_text);
+      // var abstract_info = document.createElement("div");
+      // abstract_info.innerText = data_papers[rec_paper].abstract;
+      // abstract.appendChild(abstract_info);
+      // paper.appendChild(abstract);
+
+      return paper;
+    }
+
+    function get_hr() {
+      var hr = document.createElement("hr");
+      hr.style.display = "block";
+      hr.className = "hr";
+      return hr;
+    }
+
+    function btn_user_click() {
+      var name = $("#input-user").val();
+      $.ajax({
+        type: 'GET',
+        url: 'users_info.json',
+        datatype: 'json',
+        success: function (data) {
+          console.log(data);
+          var compare_button = document.getElementById("bt-compare");
+          compare_button.style.display = "inline-block";
+          compare_button.onclick = Function("window.open('/mean.html?name=" + name + "')");
+
+          var user_main = get_user_info(data[name]);
+          user_main.className += " user_main";
+          user_main.id = "main_user_info";
+          var main_user_info = document.getElementById("main_user_info");
+          main_user_info.replaceWith(user_main);
+
+          // var hr_main = get_hr();
+          // hr_main.className += " hr_main";
+          // document.getElementById("hr-1").replaceWith(hr_main);
+
+          // 推荐的文章
+          // document.getElementById("hr_paper_1").style.display = "block";
+          // document.getElementById("hr_paper_2").style.display = "block";
+
+          document.getElementById("rec_papers").style.display = "block";
+
+          var rec_news = document.getElementById("div_rec_articles_news");
+          // rec_news.style.display = "block";
+
+          $.each(data[name].neural_news.slice(0, 7), function (idx, item) {
+            // rec_papers.appendChild(get_paper_info(data.papers, i, item));
+            var news = document.createElement("a");
+            news.className = "rec_articles_item";
+            news.id = "rec_news_" + idx;
+            news.innerText = idx + 1 + ". " + item.title;
+            news.href = item.url;
+            rec_news.appendChild(news);
+            rec_news.appendChild(document.createElement("br"));
+          });
+
+          // var hr = get_hr();
+          // hr.className += " hr_paper";
+          // rec_news.appendChild(hr);
+
+          var rec_programs = document.getElementById("div_rec_articles_programs");
+          // rec_programs.style.display = "block";
+          // console.log(data[name].neural_programs);
+
+          $.each(data[name].neural_programs.slice(0, 10), function (idx, item) {
+            // rec_papers.appendChild(get_paper_info(data.papers, i, item));
+            var program = document.createElement("a");
+            program.className = "rec_articles_item";
+            program.id = "rec_program_" + idx;
+            program.innerText = idx + 1 + ". " + item.title;
+            program.href = item.url;
+            rec_programs.appendChild(program);
+            rec_programs.appendChild(document.createElement("br"));
+          });
+
+          // var hr2 = get_hr();
+          // hr2.className += " hr_paper";
+          // rec_programs.appendChild(hr2);
+
+          var rec_papers = document.getElementById("div_rec_articles_papers");
+          // rec_papers.style.display = "block";
+
+          $.each(data[name].neural_rec_articles.slice(0, 10), function (idx, item) {
+            // rec_papers.appendChild(get_paper_info(data.papers, i, item));
+            var paper = document.createElement("a");
+            paper.className = "rec_articles_item";
+            paper.id = "rec_paper_" + idx;
+            paper.innerText = idx + 1 + ". " + item.title;
+            paper.href = item.url;
+            rec_papers.appendChild(paper);
+            rec_papers.appendChild(document.createElement("br"));
+
+            // if (idx < data[name].neural_rec_articles.length - 1) {
+            //   var hr = get_hr();
+            //   hr.className += " hr_paper";
+            //   rec_papers.appendChild(hr);
+            // }
+          });
+
+          // var hr_main_2 = get_hr();
+          // hr_main_2.className += " hr_main";
+          // document.getElementById("hr-2").replaceWith(hr_main_2);
+
+          // 推荐的人
+          document.getElementById("rec_users_box").style.display = "block";
+          var rec_users = document.getElementById("div_rec_users");
+          // rec_users.style.display = "block";
+
+          $.each(data[name].neural_rec_users, function (idx, item) {
+            // console.log(item);
+            var div = get_user_info(item);
+            div.id = "rec_user_" + idx;
+            div.className = "user";
+            rec_users.appendChild(div);
+
+            // 修改颜色
+            if (idx < data[name].neural_rec_users.length - 1) {
+              var hr = get_hr();
+              hr.className += " hr_user";
+              rec_users.appendChild(hr);
+            }
+          });
+
+        },
+        error: function () {
+          alert("获取数据失败");
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+<div class="header header-input" style="margin-bottom: 25px;">
+  <input id="input-user" name="user" type="text" style="width:200px; height:20px; text-align:center;" value="安辉耀"/>
+  <button id="bt-user" style="height:25px;" onclick="btn_user_click()">确定</button>
+  <button id="bt-compare" style="height:25px; display: none;" >对比</button>
+</div>
+
+<!--这个地方放用户信息-->
+<div id="main_user_info" class="user_info"></div>
+
+<div id="rec_papers" style="display:none;">
+<!--  <div id="rec_papers_head" class="header header_papers_rec">推荐文章</div>-->
+  <div id="rec_left" class="rec_articles">
+    <div id="div_rec_news_text" class="rec_title">推荐新闻</div>
+    <div id="div_rec_articles_news"></div>
+  </div>
+
+  <div id="rec_mid" class="rec_articles">
+    <div id="div_rec_programs_text" class="rec_title">推荐项目</div>
+    <div id="div_rec_articles_programs"></div>
+  </div>
+
+  <div id="rec_right" class="rec_articles">
+    <div id="div_rec_papers_text" class="rec_title">推荐论文</div>
+    <div id="div_rec_articles_papers"></div>
+  </div>
+</div>
+
+<div id="rec_users_box" style="display:none;">
+  <div id="rec_users_head" class="header header_users_rec">相关用户</div>
+  <div id="div_rec_users"></div>
+</div>
+
+</body>
+</html>
