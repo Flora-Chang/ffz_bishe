@@ -10,6 +10,7 @@
       width: 80%;
       margin-left: 10%;
       margin-right: 10%;
+      font-size: 20px;
     }
     /*.rec_title {*/
     /*  margin-left: 20px;*/
@@ -18,7 +19,7 @@
 
     .rec_title {
       text-align: center;
-      font-size: 20px;
+      font-size: 25px;
       color: red;
     }
 
@@ -29,8 +30,33 @@
       border-right: 1px solid red;
     }
 
+
+    .user_name {
+      color: black;
+    }
+
+
+    .link {
+      text-decoration: none;
+      line-height: 30px;
+    }
+
+
+
+    /*div {*/
+    /*  margin-bottom:50px;*/
+    /*  border:0;*/
+    /*  padding:0;*/
+    /*}*/
+    /* a {*/
+    /*   margin-bottom: 50px;*/
+    /* }*/
+
     .rec_articles_item {
       /*padding: 10px;*/
+      /*text-decoration: none*/
+      /*margin-bottom: 50px;*/
+      /*padding-bottom: 50px;*/
     }
 
     #rec_right {
@@ -41,18 +67,19 @@
       /*height: 10px;*/
       border-top: dotted blue;
     }
-    
+
     .hr_user {
       border-top: dotted green;
     }
 
     .title {
-      margin-left: 60px;
+      margin-left: 70px;
+      /*text-decoration: none*/
     }
 
     .header {
       text-align: center;
-      font-size: 20px;
+      font-size: 25px;
       color: red;
     }
 
@@ -63,15 +90,13 @@
     .text {
       color: red;
       margin-left: 10px;
-      width: 80px;
+      width: 100px;
     }
 
-    .paper_text {
-      color: green;
-    }
+
 
     .user_main {
-      background-color: #f8d7da;
+      /*background-color: #f8d7da;*/
       /*width: 80%;*/
       /*margin-left: 10%;*/
       /*margin_right: 10%;*/
@@ -81,7 +106,7 @@
     }
 
     #rec_papers {
-      background-color: #bee5eb;
+      /*background-color: #bee5eb;*/
       /*width: 80%;*/
       /*margin-left: 10%;*/
       /*margin_right: 10%;*/
@@ -92,13 +117,13 @@
     }
 
     #rec_users_box {
-      background-color: #b1dfbb;
+      /*background-color: #b1dfbb;*/
       /*width: 80%;*/
       /*margin-left: 10%;*/
       /*margin_right: 10%;*/
       padding-bottom: 10px;
     }
-    
+
   </style>
 
   <script type="text/javascript">
@@ -125,8 +150,10 @@
       name_text.className = "text name_text";
       div_name.appendChild(name_text);
 
-      var name_info = document.createElement("div");
+      var name_info = document.createElement("a");
+      name_info.href = user.url;
       name_info.innerText = user.name;
+      name_info.className = "user_name link";
       div_name.appendChild(name_info);
 
       div_user.appendChild(div_name);
@@ -181,7 +208,7 @@
 
         // 这里需要添加链接
         var title = document.createElement("a");
-        title.className = "title";
+        title.className = "title link";
         title.href = item.url;
         if (item.keywords != "") {
           title.innerText = idx + 1 + ". " + item.title + "\t【" + item.keywords + "】";
@@ -300,7 +327,7 @@
           $.each(data[name].mean_news.slice(0, 7), function (idx, item) {
             // rec_papers.appendChild(get_paper_info(data.papers, i, item));
             var news = document.createElement("a");
-            news.className = "rec_articles_item";
+            news.className = "rec_articles_item link";
             news.id = "rec_news_" + idx;
             news.innerText = idx + 1 + ". " + item.title;
             news.href = item.url;
@@ -319,7 +346,7 @@
           $.each(data[name].mean_programs.slice(0, 10), function (idx, item) {
             // rec_papers.appendChild(get_paper_info(data.papers, i, item));
             var program = document.createElement("a");
-            program.className = "rec_articles_item";
+            program.className = "rec_articles_item link";
             program.id = "rec_program_" + idx;
             program.innerText = idx + 1 + ". " + item.title;
             program.href = item.url;
@@ -337,7 +364,7 @@
           $.each(data[name].mean_pooling_rec_articles.slice(0, 10), function (idx, item) {
             // rec_papers.appendChild(get_paper_info(data.papers, i, item));
             var paper = document.createElement("a");
-            paper.className = "rec_articles_item";
+            paper.className = "rec_articles_item link";
             paper.id = "rec_paper_" + idx;
             paper.innerText = idx + 1 + ". " + item.title;
             paper.href = item.url;
